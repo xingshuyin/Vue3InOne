@@ -12,7 +12,7 @@ const router = createRouter({
   // 路由模式  https://www.bilibili.com/video/BV1dS4y1y7vd?p=77&spm_id_from=pageDriver&vd_source=5a8d3b99ea863352520bda5fad9b504d
   history: createWebHashHistory(), //TODO:router-history记录历史方式
   routes: [
-    { path: "/login", name: "login", component: () => import("../views/login/index.vue"), meta: { title: "登录页", animate: "animate__fadeIn" } }, //TODO: router-mata路由源信息
+    { path: "/login", name: "login", component: () => import("../views/login/index.vue"), meta: { title: "登录页", animate: "animate__fadeIn" } }, //TODO:router-mata路由源信息
     { path: "/", redirect: "/index" }, //TODO:router-redirect路由重定向
     { path: "/index", alias: ["/root", "/home"], name: "index", component: () => import("../views/index/index.vue") }, //TODO:router-alias路由别名
     { path: "/product", name: "product", component: () => import("../views/product/index.vue") },

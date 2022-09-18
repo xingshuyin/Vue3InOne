@@ -1,5 +1,5 @@
-# VUE3AllInOne
+# VUE3InOne
 
 vite[https://www.vitejs.net/guide/#scaffolding-your-first-vite-project]
 
-所有的特性都可以通过 TODO 查找
+通过 TODO 找到你想要的功能

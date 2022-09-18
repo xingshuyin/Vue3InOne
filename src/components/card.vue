@@ -18,10 +18,24 @@ defineExpose({ props, }); //暴露组件的内容, 父组件通过组件对象(�
 <template>
     <div class="card" @click="click">
         <div class="card-title">
-            {{title}}
+            <!-- TODO:作用域插槽 -->
+            <!-- 作用域插槽 =>把数据返回给父组件 -->
+            <slot :title="title" name="title"></slot>
         </div>
         <div class="card-body">
-            {{data}}
+            <!-- TODO:具名插槽 -->
+            <!-- 
+            <template v-slot:body>
+                <div>
+                    卡片主体
+                </div>
+            </template> 
+        -->
+            <slot name="body"></slot>
+        </div>
+        <div class="card-footer">
+            <!-- 默认插槽 -->
+            <slot></slot>
         </div>
     </div>
 </template>
@@ -42,6 +56,10 @@ defineExpose({ props, }); //暴露组件的内容, 父组件通过组件对象(�
         flex: 4;
         width: 100%;
         background-color: aquamarine;
+    }
+
+    .card-footer {
+        background: burlywood;
     }
 }
 </style>

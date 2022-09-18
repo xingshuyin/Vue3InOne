@@ -1,5 +1,5 @@
 <script setup>
-//import { ref } from 'vue';
+import { ref } from 'vue';
 //import {useRoute, useRouter} from 'vue-router';
 //const route = useRoute() //当前路由
 //const router = useRouter() //全局路由对象
@@ -17,10 +17,38 @@
 //  https://xiaoman.blog.csdn.net/article/details/122802130   //TODO:watcheffect
 //  https://xiaoman.blog.csdn.net/article/details/122811060   //TODO:生命周期
 //  https://xiaoman.blog.csdn.net/article/details/122850170   //TODO:组件传参
+const slotname = ref('default')
 </script>
 <template>
     <div>
         首页
+        <Card :title="'传入的title'">
+            <!-- TODO:使用插槽 -->
+            <!-- 绑定插槽名称: #slotname ; v-slot:slotname -->
+            <!-- 默认插槽: #default 或 不写-->
+            <!-- 作用域插槽: #title="{title} ;获取组件插槽的属性-->
+            <!-- 动态插槽: 通过变量动态绑定插槽 -->
+            <template #title="{title}">
+                <div>
+                    卡片标题 {{title}}
+                </div>
+            </template>
+            <template v-slot:body>
+                <div>
+                    卡片主体
+                </div>
+            </template>
+            <template #default>
+                <div>
+                    卡片底部
+                </div>
+            </template>
+            <template #[slotname]>
+                <div>
+                    动态插槽
+                </div>
+            </template>
+        </Card>
     </div>
 </template>
 <style scoped>

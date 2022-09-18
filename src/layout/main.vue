@@ -13,6 +13,8 @@
         <!-- TODO:router-添加animate动画 -->
         <!-- 通过路由源信息可以给每个路由添加一个animate的动画类名;渲染视图时用transition 接受这个类名;并用component渲染组件-->
         <transition :enter-active-class="`animate__animated ${route.meta.animate}`">
+            <!-- TODO:动态组件 -->
+            <!-- Component为组件的实例,不能直接使用字符串,想使用字符串=>全局组件,用选项式api声明组件 -->
             <component :is='Component'></component>
         </transition>
     </router-view>

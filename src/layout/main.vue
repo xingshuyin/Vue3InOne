@@ -11,8 +11,12 @@
 <template>
     <router-view #default="{route,Component}">
         <!-- TODO:router-添加animate动画 -->
+        <!-- animate动画   https://www.jq22.com/yanshi819 =>  animate__animated animate__动画名 -->
         <!-- 通过路由源信息可以给每个路由添加一个animate的动画类名;渲染视图时用transition 接受这个类名;并用component渲染组件-->
-        <transition :enter-active-class="`animate__animated ${route.meta.animate}`">
+        <transition :enter-active-class="`animate__animated ${route.meta.animate}`"
+            :leave-active-class="`animate__animated animate__fadeOut`" appear>
+            <!-- TODO:动画 -->
+            <!-- https://cn.vuejs.org/guide/built-ins/transition.html#css-based-transitions -->
             <!-- TODO:动态组件 -->
             <!-- Component为组件的实例,不能直接使用字符串,想使用字符串=>全局组件,用选项式api声明组件 -->
             <component :is='Component'></component>

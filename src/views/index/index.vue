@@ -1,5 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
+import shuffle from '../../components/animation/shuffle.vue';
+import stateDuringVue from '../../components/animation/stateDuring.vue';
 //import {useRoute, useRouter} from 'vue-router';
 //const route = useRoute() //当前路由
 //const router = useRouter() //全局路由对象
@@ -18,10 +20,14 @@ import { ref } from 'vue';
 //  https://xiaoman.blog.csdn.net/article/details/122811060   //TODO:生命周期
 //  https://xiaoman.blog.csdn.net/article/details/122850170   //TODO:组件传参
 const slotname = ref('default')
+const keep = ref(false)
+const num1 = ref(0)
+const num2 = ref(1)
+const fathernum = inject('fathernum')  //获取父组件provide的值   //TODO:依赖注入-注入
 </script>
 <template>
     <div>
-        首页
+        首页{{fathernum}}
         <Card :title="'传入的title'">
             <!-- TODO:使用插槽 -->
             <!-- 绑定插槽名称: #slotname ; v-slot:slotname -->
@@ -49,6 +55,23 @@ const slotname = ref('default')
                 </div>
             </template>
         </Card>
+        <!-- TODO:传送组件 -->
+        <Teleport to="body">
+            <div style="position: absolute;top: 0;">
+                传送组件
+            </div>
+        </Teleport>
+        <!-- TODO:组件缓存 -->
+        <!-- https://www.bilibili.com/video/BV1dS4y1y7vd?p=25&spm_id_from=pageDriver&vd_source=5a8d3b99ea863352520bda5fad9b504d -->
+        <keep-alive>
+            <el-input @dblclick="keep=!keep" v-if="keep" size="small" placeholder="input1" v-model="num1">
+            </el-input>
+            <el-input @dblclick="keep=!keep" v-else="!keep" size="small" placeholder="input2" v-model="num2">
+            </el-input>
+        </keep-alive>
+
+        <shuffle></shuffle>
+        <stateDuringVue></stateDuringVue>
     </div>
 </template>
 <style scoped>

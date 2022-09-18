@@ -61,6 +61,7 @@ provide('fathernum', ref(1999)) //提供值以供子组件注入; //TODO:依赖�
             width: 85%;
             height: 100%;
             overflow: auto;
+            position: relative;
         }
     }
 }

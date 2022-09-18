@@ -8,13 +8,14 @@
 //const map = ref(null); //获取ref值为map的元素
 //defineExpose({ map,}); //暴露组件的内容, 父组件通过组件对象(如ref)的value获取暴露的对象
 </script>
+<!-- :leave-active-class="`animate__animated animate__fadeOut`" -->
 <template>
     <router-view #default="{route,Component}">
         <!-- TODO:router-添加animate动画 -->
         <!-- animate动画   https://www.jq22.com/yanshi819 =>  animate__animated animate__动画名 -->
         <!-- 通过路由源信息可以给每个路由添加一个animate的动画类名;渲染视图时用transition 接受这个类名;并用component渲染组件-->
-        <transition :enter-active-class="`animate__animated ${route.meta.animate}`"
-            :leave-active-class="`animate__animated animate__fadeOut`" appear>
+        <transition :enter-active-class="`animate__animated ${route.meta.animate}`" appear
+            leave-to-class="router-leave-to" leave-from-class="router-leave-from">
             <!-- TODO:动画 -->
             <!-- https://cn.vuejs.org/guide/built-ins/transition.html#css-based-transitions -->
             <!-- TODO:动态组件 -->
@@ -24,5 +25,11 @@
     </router-view>
 </template>
 <style scoped lang="scss">
+.router-leave-from {
+    // display: none;
+}
 
+.router-leave-to {
+    display: none;
+}
 </style>

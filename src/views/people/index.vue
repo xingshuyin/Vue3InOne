@@ -10,13 +10,16 @@ console.log(route)
 //defineExpose({ map,}); //暴露组件的内容, 父组件通过组件对象(如ref)的value获取暴露的对象
 </script>
 <template>
-    <!-- TODO:router-获取路由参数 -->
-    人员: id=>{{route.query.id}} {{route.params.id}}
-    <!-- 子路由;夫路由query参数会在跳转子路由后丢失; -->
-    <router-link :to="{name:'message', query:{name:'张三',age: 18, id: 1000}}">信息</router-link>
-    <router-view></router-view>
-    <!-- TODO:router-命名视图 -->
-    <router-view name="other"></router-view>
+    <div>
+        <!-- TODO:router-获取路由参数 -->
+        人员: id=>{{route.query.id}} {{route.params.id}}
+        <!-- 子路由;夫路由query参数会在跳转子路由后丢失; -->
+        <router-link :to="{name:'message', query:{name:'张三',age: 18, id: 1000}}">信息</router-link>
+        <router-view></router-view>
+        <!-- TODO:router-命名视图 -->
+        <router-view name="other"></router-view>
+    </div>
+
 </template>
 <style scoped lang='scss'>
 

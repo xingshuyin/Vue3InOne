@@ -30,7 +30,6 @@ const end = function () {//加载结束
         speed.value = 100
         bar.value.style.width = speed.value + "%"
         setTimeout(() => {
-            console.log('end-setTimeout')
             bar.value.style.display = 'none'
         }, 500)
     })

@@ -19,7 +19,9 @@
 //  https://xiaoman.blog.csdn.net/article/details/122850170   //TODO:组件传参
 </script>
 <template>
-    首页
+    <div>
+        首页
+    </div>
 </template>
 <style scoped>
 

@@ -1,4 +1,7 @@
 <script setup>
+import Tree from '../../components/Tree.vue';
+import treelist from '../../variables'
+console.log(treelist)
 //import { ref } from 'vue';
 //import {useRoute, useRouter} from 'vue-router';
 //const route = useRoute() //当前路由
@@ -9,7 +12,9 @@
 //defineExpose({ map,}); //暴露组件的内容, 父组件通过组件对象(如ref)的value获取暴露的对象
 </script>
 <template>
-    产品
+    <div>
+        <Tree :data="treelist"></Tree>
+    </div>
 </template>
 <style scoped>
 

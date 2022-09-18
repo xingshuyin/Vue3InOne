@@ -13,9 +13,9 @@ const router = createRouter({
   history: createWebHashHistory(), //TODO:router-history记录历史方式
   routes: [
     { path: "/login", name: "login", component: () => import("../views/login/index.vue"), meta: { title: "登录页", animate: "animate__fadeIn" } }, //TODO:router-mata路由源信息
-    { path: "/", redirect: "/index" }, //TODO:router-redirect路由重定向
-    { path: "/index", alias: ["/root", "/home"], name: "index", component: () => import("../views/index/index.vue") }, //TODO:router-alias路由别名
-    { path: "/product", name: "product", component: () => import("../views/product/index.vue") },
+    { path: "/", redirect: "/index", meta: { title: "首页", animate: "animate__fadeIn" } }, //TODO:router-redirect路由重定向
+    { path: "/index", alias: ["/root", "/home"], name: "index", component: () => import("../views/index/index.vue"), meta: { title: "首页", animate: "animate__fadeIn" } }, //TODO:router-alias路由别名
+    { path: "/product", name: "product", component: () => import("../views/product/index.vue"), meta: { title: "产品信息", animate: "animate__fadeIn" } },
     {
       path: "/people/:id",
       name: "people",
@@ -32,6 +32,7 @@ const router = createRouter({
           },
         },
       ],
+      meta: { title: "人员信息", animate: "animate__fadeIn" },
     }, //TODO:router-params路径参数
   ],
 });

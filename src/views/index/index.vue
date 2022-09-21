@@ -27,12 +27,45 @@ const num1 = ref(0)
 const num2 = ref(1)
 //TODO:依赖注入-注入
 const fathernum = inject('fathernum')  //获取父组件provide的值   
-const item_num = ref(2) 
+const item_num = ref(2)
+
+
+const vCard = { //TODOL自定义指令
+    // https://cn.vuejs.org/guide/reusability/custom-directives.html#directive-hooks
+    // setup中,以v开头的驼峰命名变量都被识别为自定义指令;自定义指令可以放到任何一个组件或元素上 =>  <Card v-card="{a:1}">
+    // 里面的声明周期钩子接受 el binding vnode prevNode  四个参数用以处理元素
+    mounted(...args) {
+
+    },
+}
+const vCardSimple = (el, binding) => { //TODO:自定义指令-简写
+    //简写情况下,只有绑定后和更新后会触发 ; <Card v-card-simple="{a:2}">
+    let head = el.firstElementChild
+    console.log(head)
+    const mouseDown = (e) => { //TODO:动画-拖动
+        let x = e.clientX - el.offsetLeft
+        let y = e.clientY - el.offsetTop
+        console.log('down')
+        const move = (e) => {
+            console.log('sdasd')
+            el.style.position = 'relative'
+            el.style.left = e.clientX - x + 'px'
+            el.style.top = e.clientY - y + 'px'
+        }
+        document.addEventListener('mousemove', move)
+        document.addEventListener('mouseup', () => {
+            el.style.left = 0 + 'px'
+            el.style.top = 0 + 'px'
+            document.removeEventListener('mousemove', move)
+        })
+    }
+    head.addEventListener('mousedown', mouseDown)
+}
 </script>
 <template>
     <div>
-        首页{{fathernum}}
-        <Card :title="'传入的title'">
+        首页 fathernum:{{fathernum}}
+        <Card v-card="{a:1}" v-card-simple="{a:2}" :title="'传入的title'" v-model="fathernum">
             <!-- TODO:插槽-使用插槽 -->
             <!-- 绑定插槽名称: #slotname ; v-slot:slotname -->
             <!-- 默认插槽: #default 或 不写-->

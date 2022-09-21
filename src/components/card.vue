@@ -11,18 +11,27 @@ const instance = getCurrentInstance()
 instance.proxy.$bus.on('busEvent', (data) => {
     console.log(data)
 })
-const emits = defineEmits(['onclick']); //TODO:emits-定义emits事件
+const emits = defineEmits(['onclick', 'update:modelValue']); //TODO:emits-定义emits事件
 const click = () => {
-    emits('onclick', { title: title }) //TODO:emits-触发emits事件
+    emits('onclick', { title: props.title }) //TODO:emits-触发emits事件
 }
 //TODO:props-父给子传参
-const props = defineProps({ data: Object, title: String }); // defineProps的参数, 可以直接使用
+const props = defineProps({ data: Object, title: String, modelValue: Number }); // defineProps的参数, 可以直接使用
+//TODO:双向绑定
+// <Card v-model="num"/>    const props = defineProps({ modelValue: String }); 默认使用modelValue接收v-model值; 
+// const emits = defineEmits(['update:modelValue']); 使用update:modelValue修改绑定值=> emits('update:modelValue', 'newValue')
+//也可自定义名称   <Card v-model:num="num"/>   defineProps({ num: String })  defineEmits(['update:num'])
+
+
 //TODO:defineExpose-暴露组件的内容
 defineExpose({ props, }); //暴露组件的内容, 父组件通过组件对象(如ref)的value获取暴露的对象  
 </script>
 <template>
     <div class="card" @click="click">
         <div class="card-title">
+            <div @click="emits('update:modelValue', modelValue+1)">
+                {{modelValue}}
+            </div>
             <!-- TODO:插槽-作用域插槽 -->
             <!-- 作用域插槽 =>把数据返回给父组件 -->
             <slot :title="title" name="title"></slot>

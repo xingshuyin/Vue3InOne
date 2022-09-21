@@ -27,6 +27,7 @@ const num1 = ref(0)
 const num2 = ref(1)
 //TODO:依赖注入-注入
 const fathernum = inject('fathernum')  //获取父组件provide的值   
+const item_num = ref(2) 
 </script>
 <template>
     <div>
@@ -77,9 +78,12 @@ const fathernum = inject('fathernum')  //获取父组件provide的值
 
         <shuffle></shuffle>
         <stateDuringVue></stateDuringVue>
+        <div @click="item_num-=1">减少一个</div>
         <scrollVue>
             <template #default>
-                <shuffle></shuffle>
+                <div style="width: 50px;height: 50px;background: black;color: white; " @click="item_num+=1"
+                    v-for="(item, index) in Array(item_num)" :key="index">{{index}}</div>
+
             </template>
         </scrollVue>
     </div>

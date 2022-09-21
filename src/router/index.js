@@ -10,11 +10,15 @@ const router = createRouter({
     }
   },
   // 路由模式  https://www.bilibili.com/video/BV1dS4y1y7vd?p=77&spm_id_from=pageDriver&vd_source=5a8d3b99ea863352520bda5fad9b504d
-  history: createWebHashHistory(), //TODO:router-history记录历史方式
+  //TODO:router-history记录历史方式
+  history: createWebHashHistory(),
   routes: [
-    { path: "/login", name: "login", component: () => import("../views/login/index.vue"), meta: { title: "登录页", animate: "animate__fadeIn" } }, //TODO:router-mata路由源信息
-    { path: "/", redirect: "/index", meta: { title: "首页", animate: "animate__fadeIn" } }, //TODO:router-redirect路由重定向
-    { path: "/index", alias: ["/root", "/home"], name: "index", component: () => import("../views/index/index.vue"), meta: { title: "首页", animate: "animate__fadeIn" } }, //TODO:router-alias路由别名
+    //TODO:router-mata路由源信息
+    { path: "/login", name: "login", component: () => import("../views/login/index.vue"), meta: { title: "登录页", animate: "animate__fadeIn" } },
+    //TODO:router-redirect路由重定向
+    { path: "/", redirect: "/index", meta: { title: "首页", animate: "animate__fadeIn" } },
+    //TODO:router-alias路由别名
+    { path: "/index", alias: ["/root", "/home"], name: "index", component: () => import("../views/index/index.vue"), meta: { title: "首页", animate: "animate__fadeIn" } },
     { path: "/product", name: "product", component: () => import("../views/product/index.vue"), meta: { title: "产品信息", animate: "animate__fadeIn" } },
     {
       path: "/people/:id",
@@ -33,7 +37,8 @@ const router = createRouter({
         },
       ],
       meta: { title: "人员信息", animate: "animate__fadeIn" },
-    }, //TODO:router-params路径参数
+    },
+    //TODO:router-params路径参数
   ],
 });
 //动态路由;用于权限管理

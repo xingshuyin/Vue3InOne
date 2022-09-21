@@ -9,15 +9,13 @@ const props = defineProps({}); // defineProps的参数, 可以直接使用
 //const map = ref(null); //获取ref值为map的元素
 //defineExpose({ map,}); //暴露组件的内容, 父组件通过组件对象(如ref)的value获取暴露的对象
 const scroll1 = ref(null)
-const scroll2 = ref(null)
 var height = ref('-200px')
 var ScrollTime = ref('')
 onMounted(() => {
-    console.log(scroll2)
-    ScrollTime.value = parseInt(scroll1.value.offsetHeight / 30) + 's'
-    height.value = '-' + scroll1.value.offsetHeight + 'px'
+    ScrollTime.value = parseInt(scroll1.value.offsetHeight / 30) + 's' //获取滚动时间
+    height.value = '-' + scroll1.value.offsetHeight + 'px'  //获取滚动目标的高度
 })
-// TODO:无限滚动
+// TODO:动画-无限滚动
 </script>
 <template>
     <div class="scroll" :style="{height:'230px'}">
@@ -34,8 +32,8 @@ onMounted(() => {
 </template>
 <style scoped lang="scss">
 .scroll {
-    width: 330px;
-    height: 300px;
+    width: fit-content;
+    height: fit-content;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -44,6 +42,10 @@ onMounted(() => {
 .scroll-body {
     height: fit-content;
     animation: v-bind(ScrollTime) rowup linear infinite normal;
+}
+
+.scroll-body:hover {
+    animation-play-state: paused;
 }
 
 .scroll-item {

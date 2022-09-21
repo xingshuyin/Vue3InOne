@@ -14,7 +14,7 @@ const getMessage = (item) => {
     console.log(item.name)
 }
 </script>
-<!-- TODO:树形结构 -->
+<!-- TODO:树形结构-展示 -->
 <template>
     <div class="tree">
         <div class="tree-item" v-for="v,i in data" :key="i" @click.stop="getMessage(v)">

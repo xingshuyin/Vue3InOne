@@ -15,13 +15,13 @@ let list = ref(Array.apply(null, { length: 81 }).map((_, index) => {
     }
 }))
 const randomList = () => {
-    list.value = _.shuffle(list.value)
+    list.value = _.shuffle(list.value) //随机打乱数组
 }
 
 </script>
 <template>
     <div class="shuffle" @click="randomList()">
-        <!-- TODO:平移动画 -->
+        <!-- TODO:动画-平移动画 -->
         <transition-group move-class="move">
             <div class="shuffle-item" v-for="i in list" :key="i.id">{{i.id}}</div>
         </transition-group>

@@ -6,7 +6,7 @@ import { ref, onMounted, onBeforeMount } from 'vue';
 //const props = defineProps({ data: Object, title: String}); // defineProps的参数, 可以直接使用
 //const emits = defineEmits(['onclick']); // emits 触发父组件函数
 //const map = ref(null); //获取ref值为map的元素
-// TODO:顶部进度条
+// TODO:动画-顶部进度条
 const bar = ref(null)
 const speed = ref(1)
 const timer = ref(0)

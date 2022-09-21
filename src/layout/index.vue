@@ -4,7 +4,8 @@ import Side from './side.vue'
 import Main from './main.vue'
 import Head from './head.vue'
 import { provide, ref } from 'vue'
-provide('fathernum', ref(1999)) //提供值以供子组件注入; //TODO:依赖注入-依赖
+//TODO:依赖注入-依赖
+provide('fathernum', ref(1999)) //提供值以供子组件注入; 
 //import {useRoute, useRouter} from 'vue-router';
 //const route = useRoute() //当前路由
 //const router = useRouter() //全局路由对象

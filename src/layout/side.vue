@@ -7,7 +7,7 @@ const router = useRouter() //全局路由对象
 //const emits = defineEmits(['onclick']); // emits 触发父组件函数
 //const map = ref(null); //获取ref值为map的元素
 //defineExpose({ map,}); //暴露组件的内容, 父组件通过组件对象(如ref)的value获取暴露的对象
-const jump = () => {//TODO:编程式导航
+const jump = () => {//TODO:router-编程式导航
     //TODO:router-路由传参
     // router.push({ path: '/people', query: { id: 1000 } })
     router.push({ name: 'people', query: { id: 1000 }, params: { id: 1000 } }) // params参数必须用name;params为路径参数(id必须先在routes里创建创建);query为?参数(query在切换子路由时会丢失);

@@ -13,7 +13,7 @@ let num = reactive({
     tnum: 0
 })
 watch(() => num.current, (newV, ondV) => {
-    gsap.to(num, { //TODO:值过度
+    gsap.to(num, { //TODO:动画-值过度
         duration: 1,
         tnum: newV,
     })

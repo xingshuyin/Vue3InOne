@@ -2,6 +2,7 @@
 import { reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus'
+
 const route = useRoute() //当前路由
 const router = useRouter() //全局路由对象
 //const props = defineProps({ data: Object, title: String}); // defineProps的参数, 可以直接使用

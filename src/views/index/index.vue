@@ -2,6 +2,7 @@
 import { ref, inject } from 'vue';
 import shuffle from '../../components/animation/shuffle.vue';
 import stateDuringVue from '../../components/animation/stateDuring.vue';
+import scrollVue from '../../components/animation/scroll.vue';
 //import {useRoute, useRouter} from 'vue-router';
 //const route = useRoute() //当前路由
 //const router = useRouter() //全局路由对象
@@ -72,6 +73,13 @@ const fathernum = inject('fathernum')  //获取父组件provide的值   //TODO:�
 
         <shuffle></shuffle>
         <stateDuringVue></stateDuringVue>
+        <scrollVue>
+            <template #default>
+                <div>
+                    <shuffle></shuffle>
+                </div>
+            </template>
+        </scrollVue>
     </div>
 </template>
 <style scoped>

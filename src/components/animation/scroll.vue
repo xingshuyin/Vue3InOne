@@ -55,12 +55,12 @@ onUpdated(() => {
 
 .scroll-body {
     height: 100%;
-    width: 100%;
+    width: fit-content;
     animation: v-bind(ScrollTime) rowup linear infinite normal;
 }
 
 .scroll-body:hover {
-    animation-play-state: paused;
+    animation-play-state: paused !important;
 }
 
 .scroll-item {

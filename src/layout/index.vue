@@ -1,5 +1,4 @@
 <script setup>
-import processLine from '../components/processLine.vue';
 import Side from './side.vue'
 import Main from './main.vue'
 import Head from './head.vue'

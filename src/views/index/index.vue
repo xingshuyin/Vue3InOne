@@ -1,5 +1,5 @@
 <script setup>
-import { ref, inject, getCurrentInstance } from 'vue';
+import { ref, inject, getCurrentInstance, onBeforeMount, onMounted } from 'vue';
 import shuffle from '../../components/animation/shuffle.vue';
 import stateDuringVue from '../../components/animation/stateDuring.vue';
 import scrollVue from '../../components/animation/scroll.vue';
@@ -23,13 +23,23 @@ const instance = getCurrentInstance()
 //  https://xiaoman.blog.csdn.net/article/details/122850170   //TODO:基本语法-组件传参
 const slotname = ref('default')
 const keep = ref(false)
-const num1 = ref(0)
-const num2 = ref(1)
+const num1 = ref('缓存1 (双击切换另一个)')
+const num2 = ref('缓存2 (双击切换另一个)')
 //TODO:依赖注入-注入
-const fathernum = inject('fathernum')  //获取父组件provide的值   
+const fathernum = inject('fathernum')  //获取父组件provide的值
+const bus = inject('bus')//获取全局provide的值
+//TODO:全局-使用全局变量
+const $bus = instance.proxy.$bus//获取全局变量
 const item_num = ref(2)
 
+const loading = inject('loading')
+loading.show()
+onMounted(() => {
+    setTimeout(() => {
+        loading.hide()
+    }, 1000);
 
+})
 const vCard = { //TODOL自定义指令
     // https://cn.vuejs.org/guide/reusability/custom-directives.html#directive-hooks
     // setup中,以v开头的驼峰命名变量都被识别为自定义指令;自定义指令可以放到任何一个组件或元素上 =>  <Card v-card="{a:1}">
@@ -94,9 +104,9 @@ const vCardSimple = (el, binding) => { //TODO:自定义指令-简写
         </Card>
         <!-- TODO:传送组件 -->
         <Teleport to="body">
-            <!-- TODO:全局-使用全局变量 -->
+
             <!-- TODO:mitt-发布事件 -->
-            <div style="position: absolute;top: 0;" @click="instance.proxy.$bus.emit('busEvent', {a:1,b:2})">
+            <div style="position: absolute;top: 0;" @click="$bus.emit('busEvent', {a:1,b:2})">
                 传送组件
             </div>
         </Teleport>

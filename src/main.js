@@ -1,4 +1,5 @@
 import { createApp, createVNode, render } from "vue";
+import loading from "./plugin/loading";
 import ElementPlus from "element-plus"; //npm install element-plus --save
 import router from "./router"; //引入路由组件
 import mitt from "mitt"; // npm install mitt -S
@@ -25,11 +26,14 @@ router.beforeEach((to, from, next) => {
   }
 });
 router.afterEach((to, from, next) => {
+  // TODO:router-后置守卫
   processNode.component?.exposed?.end(); //TODO:动画-结束进度动画
 });
 const app = createApp(App); //创建app
 app.component("Card", Card); //TODO:全局-组件
-app.config.globalProperties.$bus = bus; //TODO:全局-变量
+app.provide("bus", bus); //使用provide创建全局变量; 用inject获取全局变量
+app.config.globalProperties.$bus = bus; //TODO:全局-变量(模板中直接使用)
 app.use(router); //使用路由组件
+app.use(loading); //TODO:使用自定义app
 app.use(ElementPlus); //使用elementui-plus组件
 app.mount("#app"); //绑定根组件

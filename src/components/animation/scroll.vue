@@ -76,6 +76,7 @@ onUpdated(() => {
     }
 
     100% {
+        // TODO:样式-使用js变量
         -webkit-transform: translate3d(0, v-bind(height), 0);
         transform: translate3d(0, v-bind(height), 0);
         display: none;

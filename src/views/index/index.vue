@@ -40,7 +40,7 @@ onMounted(() => {
     }, 1000);
 
 })
-const vCard = { //TODOL自定义指令
+const vCard = { //TODO:自定义指令
     // https://cn.vuejs.org/guide/reusability/custom-directives.html#directive-hooks
     // setup中,以v开头的驼峰命名变量都被识别为自定义指令;自定义指令可以放到任何一个组件或元素上 =>  <Card v-card="{a:1}">
     // 里面的声明周期钩子接受 el binding vnode prevNode  四个参数用以处理元素
@@ -73,7 +73,7 @@ const vCardSimple = (el, binding) => { //TODO:自定义指令-简写
 }
 </script>
 <template>
-    <div>
+    <div class="index">
         首页 fathernum:{{fathernum}}
         <Card v-card="{a:1}" v-card-simple="{a:2}" :title="'传入的title'" v-model="fathernum">
             <!-- TODO:插槽-使用插槽 -->
@@ -131,6 +131,12 @@ const vCardSimple = (el, binding) => { //TODO:自定义指令-简写
         </scrollVue>
     </div>
 </template>
-<style scoped>
-
+<style scoped lang="scss">
+.index {
+    :deep(.el-input) {
+        //TODO:样式-样式穿透
+        width: 200px;
+    }
+}
 </style>
+

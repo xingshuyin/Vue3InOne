@@ -38,16 +38,20 @@ router.afterEach((to, from, next) => {
 import { createPinia } from "pinia"; //引入pinia
 const pinia = createPinia();
 const save = option => {
+  //TODO:pinia-创建插件
+  // option=安装插件时传的参数
   return context => {
+    //必须返回一个函数,接受一个上下文参数
     console.log("context", context);
-    const { store } = context;
+    const { store } = context; //获取上下文中的store
     console.log("store", store);
     store.$subscribe(() => {
+      //给store添加监听
       console.log("localStorage");
-      localStorage.setItem(option.key, JSON.stringify(toRaw(store.$state)));
+      localStorage.setItem(option.key, JSON.stringify(toRaw(store.$state))); //储存state的值
     });
     if (localStorage.getItem(option.key)) {
-      return { ...JSON.parse(localStorage.getItem(option.key)) };
+      return { ...JSON.parse(localStorage.getItem(option.key)) }; //加载储存的state的值
     }
   };
 };

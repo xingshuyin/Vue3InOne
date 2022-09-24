@@ -47,7 +47,8 @@ defineExpose({ props, }); //暴露组件的内容, 父组件通过组件对象(�
         -->
             <slot name="body"></slot>
         </div>
-        <div class="card-footer">
+        <!-- TODO:unocss-使用正则动态样式 -->
+        <div class="card-footer bg-rgb(231,208,208) bg-center flex-center m5 p1 pos-r-l10px-t5px">
             <!-- 默认插槽 -->
             <slot></slot>
         </div>
@@ -72,9 +73,9 @@ defineExpose({ props, }); //暴露组件的内容, 父组件通过组件对象(�
         background-color: aquamarine;
     }
 
-    .card-footer {
-        background: burlywood;
-    }
+    // .card-footer {
+    //     background: burlywood;
+    // }
 }
 
 // TODO:样式-插槽选择器

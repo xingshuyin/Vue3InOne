@@ -4,23 +4,27 @@ import shuffle from '../../components/animation/shuffle.vue';
 import stateDuringVue from '../../components/animation/stateDuring.vue';
 import scrollVue from '../../components/animation/scroll.vue';
 const instance = getCurrentInstance()
-//import {useRoute, useRouter} from 'vue-router';
-//const route = useRoute() //当前路由
-//const router = useRouter() //全局路由对象
-//const props = defineProps({ data: Object, title: String}); // defineProps的参数, 可以直接使用
-//const emits = defineEmits(['onclick']); // emits 触发父组件函数
-//const map = ref(null); //获取ref值为map的元素
-//defineExpose({ map,}); //暴露组件的内容, 父组件通过组件对象(如ref)的value获取暴露的对象
 
-//  https://xiaoman.blog.csdn.net/article/details/122773486   //TODO:基本语法-模板语法
-//  https://xiaoman.blog.csdn.net/article/details/122780637   //TODO:基本语法-ref
-//  https://xiaoman.blog.csdn.net/article/details/122784094   //TODO:基本语法-reactive
-//  https://xiaoman.blog.csdn.net/article/details/122791665   //TODO:基本语法-toRef, toRefs, toRaw
-//  https://xiaoman.blog.csdn.net/article/details/122792620   //TODO:基本语法-computed
-//  https://xiaoman.blog.csdn.net/article/details/122797990   //TODO:基本语法-watch
-//  https://xiaoman.blog.csdn.net/article/details/122802130   //TODO:基本语法-watcheffect
-//  https://xiaoman.blog.csdn.net/article/details/122811060   //TODO:基本语法-生命周期
-//  https://xiaoman.blog.csdn.net/article/details/122850170   //TODO:基本语法-组件传参
+//-------------------------store开始-------------------------
+import { storeToRefs } from "pinia";
+import { useCounterStore } from "../../store/index";
+const counter = useCounterStore(); //TODO:pinia-创建store实例
+// const counter2 = useCounterStore(); //TODO:pinia-创建store实例
+// const { count } = storeToRefs(useCounterStore()); //直接解构出state中的值;不用storeToRefs的话没有响应式
+// counter.$subscribe((args, state) => {
+//     //TODO:pinia-监听state的变化
+//     // console.log("counter.$subscribe", args, state); //args->store的信息  state->state的新值
+// });
+// counter.$onAction(args => {
+//     //TODO:pinia-action的执行
+//     // console.log("counter.$onAction", args);
+// });
+
+// counter.increment(); //TODO:pinia-执行action
+// counter.count = 100; //pinia-直接修改值
+// counter.set_async();
+// counter.$reset() //TODO:pinia-重置state的值
+//-------------------------store结束-------------------------
 const slotname = ref('default')
 const keep = ref(false)
 const num1 = ref('缓存1 (双击切换另一个)')
@@ -32,14 +36,14 @@ const bus = inject('bus')//获取全局provide的值
 const $bus = instance.proxy.$bus//获取全局变量
 const item_num = ref(2)
 
-const loading = inject('loading')
-loading.show()
-onMounted(() => {
-    setTimeout(() => {
-        loading.hide()
-    }, 1000);
+// const loading = inject('loading')  //TODO:插件-加载动画触发
+// loading.show()
+// onMounted(() => {
+//     setTimeout(() => {
+//         loading.hide()
+//     }, 1000);
 
-})
+// })
 const vCard = { //TODO:自定义指令
     // https://cn.vuejs.org/guide/reusability/custom-directives.html#directive-hooks
     // setup中,以v开头的驼峰命名变量都被识别为自定义指令;自定义指令可以放到任何一个组件或元素上 =>  <Card v-card="{a:1}">
@@ -51,13 +55,10 @@ const vCard = { //TODO:自定义指令
 const vCardSimple = (el, binding) => { //TODO:自定义指令-简写
     //简写情况下,只有绑定后和更新后会触发 ; <Card v-card-simple="{a:2}">
     let head = el.firstElementChild
-    console.log(head)
     const mouseDown = (e) => { //TODO:动画-拖动
         let x = e.clientX - el.offsetLeft
         let y = e.clientY - el.offsetTop
-        console.log('down')
         const move = (e) => {
-            console.log('sdasd')
             el.style.position = 'relative'
             el.style.left = e.clientX - x + 'px'
             el.style.top = e.clientY - y + 'px'
@@ -83,7 +84,7 @@ const vCardSimple = (el, binding) => { //TODO:自定义指令-简写
             <!-- 动态插槽: 通过变量动态绑定插槽 -->
             <template #title="{title}">
                 <div>
-                    卡片标题 {{title}}
+                    卡片标题 {{title}} <div @click="counter.count++">{{counter.count}}</div>
                 </div>
             </template>
             <template v-slot:body>

@@ -13,7 +13,7 @@ const form = reactive({
     user: null,
     psd: null,
 })
-document.title = route.meta.title
+console.log(import.meta.env)//TODO:全局-获取环境变量信息
 const login = async () => {
     // console.log(form_dom)
     await form_dom.value.validate((valid, fields) => {
